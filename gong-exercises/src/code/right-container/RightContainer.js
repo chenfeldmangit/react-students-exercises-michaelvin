@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
-import './stylesheets/TwitterStylesheet.css'
+import '../../App.css';
+import '../../stylesheets/TwitterStylesheet.css'
 
-import gear from "./resources/gear.svg"
+import gear from "../../resources/gear.svg"
 
 
 class RightContainer extends React.Component {
@@ -38,8 +38,8 @@ class RightContainer extends React.Component {
                         <div className="right-container-title-text">Who to follow</div>
                     </div>
 
-                    <FollowObject src={"https://pbs.twimg.com/profile_images/822547732376207360/5g0FC8XX_400x400.jpg"} user={"barack Obama"}/>
-                    <FollowObject src={"https://pbs.twimg.com/profile_images/822547732376207360/5g0FC8XX_400x400.jpg"} user={"barack Obama"}/>
+                    <FollowObject src={"https://pbs.twimg.com/profile_images/822547732376207360/5g0FC8XX_400x400.jpg"} user={"Barack Obama"} id={"@BarackObama"}/>
+                    <FollowObject src={"https://pbs.twimg.com/profile_images/664849888925065217/tVaCCUG-_400x400.jpg"} user={"Pierre Hermé Paris"} id={"@PierreHerme"}/>
 
                     <div style={{height: "10px"}}/>
 
@@ -56,11 +56,11 @@ class FollowObject extends React.Component {
                 <div className="follow-object">
                     <div className="follow-object-sub">
                         <div>
-                            <img className="follow-object-img" alt="" src={this.props.src}/>
-                            {/*<img className="follow-object-img" alt="" src="https://pbs.twimg.com/profile_images/822547732376207360/5g0FC8XX_400x400.jpg"/>*/}
+                            <img className="follow-object-img" alt={this.props.src} src={this.props.src}/>
+                            {/*<img className="follow-object-img" alt={this.props.src} src={this.props.src}/>*/}
                         </div>
                         <div>
-                            <strong>{this.props.user}</strong>
+                            <strong>{this.props.user}</strong><br/>{this.props.id}
                         </div>
                     </div>
                     <div>

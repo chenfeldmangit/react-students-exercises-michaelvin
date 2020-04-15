@@ -6,7 +6,7 @@
     flex-direction: row;
 }
 
-#left-container, #center-container, #right-container {
+#left-container, #tweet-feed, #profile-page, #right-container {
     display: flex;
     flex-direction: column;
     /*border-style: dotted;*/
@@ -18,12 +18,16 @@
     justify-content: flex-start;
 }
 
-#center-container {
+#tweet-feed {
     /*flex-grow: 3;*/
     width: 60%;
     position: relative;
     border-style: solid;
     border-color: #F5F8FA;
+}
+
+#profile-page {
+
 }
 
 #right-container {
@@ -82,9 +86,9 @@
     font-size: 20px;
 }
 
-/* center-container */
+/* tweet-feed */
 
-#center-container-sticky-banner {
+#tweet-feed-sticky-banner {
     position: sticky;
     top: 0;
     z-index: 1;
@@ -94,7 +98,6 @@
     border-color: white;
     border-bottom-color: #F5F8FA;
     padding: 0.5em;
-    text-align: left;
 }
 
 #user-tweet {
@@ -128,6 +131,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin: 1em 0 1em 0;
 }
 
 .user-tweet .tweet-button {
@@ -148,11 +152,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 1em 0 1em 0;
     /*border-style: solid;*/
 }
 
 .tweet-content {
-    margin: 0 1em 0 5em;
+    margin: 1em 1em 1em 5em;
     /*border-style: solid;*/
 }
 
@@ -160,13 +165,23 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin: 0 7em 0 5em;
+    margin: 0.5em 7em 0.5em 5em;
+    align-items: center;
     /*border-style: solid;*/
 }
 
 .tweet-action-bar-button {
     border-style: none;
     background-color: white;
+}
+
+/*.tweet-action-bar-button*/.liked {
+    background: #9af0f3;
+    border-radius: 60%;
+}
+
+.tweet-action-bar-button > *{
+    pointer-events: none;
 }
 
 .tweet-action-bar-button-img {
@@ -186,7 +201,6 @@
 #search {
     /*flex-grow: 1;*/
     border-radius: 4em;
-    text-align: left;
     /*background-image: url('./resources/search.svg');*/
     /*background-repeat: no-repeat;*/
     background-position: left;
@@ -233,7 +247,7 @@
     justify-content: space-between;
 }
 
-.follow-object-img {
+.follow-object-img, .tweet-who-img {
     border-radius: 40px;
     height: 40px;
     width: 40px;
@@ -262,7 +276,6 @@
 
 .right-container-title-text {
     padding: 0.5em 0 0.5em 1em;
-    text-align: left;
 }
 
 .right-container-title .menu-button-img {
@@ -276,28 +289,27 @@
     border-bottom-color: #D8D9DA;
 }
 
-/* template */
+/* profile-page */
 
-.show-profile {
-    display: flex;
-    flex-direction: column;
-}
-
-.show-profile-upper-line {
+.profile-page-upper-line {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
-.show-profile .show-profile-sub {
+#profile-page .profile-page-sub {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.show-profile .profile-name {
+#profile-page .profile-name {
     font-weight: bold;
+}
+
+#show-profile-location-pin {
+    width: 15px;
 }
 
 .return-button .menu-button-img {
@@ -352,7 +364,6 @@
     font-size: 13px;
 }
 
-
 .edit-profile-input-container {
     border: none;
     padding: 0 8px;
@@ -405,12 +416,6 @@
     font-weight: bold;
 }
 
-.profile-img, .edit-profile-profile-img {
+#left-menu-profile-img, #profile-img, #edit-profile-profile-img {
     border-radius: 20em;
 }
-
-#left-menu-profile-img {
-    border-radius: 20em;
-}
-
-
