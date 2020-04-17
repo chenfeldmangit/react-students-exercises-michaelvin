@@ -48,8 +48,7 @@ class TweetFeed extends React.Component {
                 </div>
 
                 <div id="tweets">
-                    {showTweetsFeed()}
-                    {/*{this.showTweetsFeed}*/}
+                    {this.showTweetsFeed()}
                 </div>
 
             </div>
@@ -136,19 +135,6 @@ function createTweetList() {
     if (tweetList == null) {
         localStorage.setItem("tweetList", JSON.stringify([]));
     }
-}
-
-function showTweetsFeed(props) {
-    const jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
-    const tweetList = TweetListObject.fromJson(jsonTweetList);
-
-    return (
-        <>
-            {tweetList.tweets.map(item => {
-                return <Tweet tweetData={item} key={item.tweetId}/>
-            })}
-        </>
-    )
 }
 
 export default TweetFeed;
