@@ -4,13 +4,15 @@ import '../../stylesheets/TwitterStylesheet.css'
 
 import TweetFeed from "./TweetFeed";
 import ProfilePage from "./ProfilePage";
+import PropTypes from "prop-types";
 
 
 export default class CenterContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {displayTweetFeed: true, displayProfilePage: false};
+        this.state = {displayTweetFeed: false, displayProfilePage: true};
+        // this.state = {displayTweetFeed: true, displayProfilePage: false};
         // if (!this.props.shouldDisplay) {
         //     this.state = {displayTweetFeed: true, displayProfilePage: false};
         // } else {
@@ -20,32 +22,14 @@ export default class CenterContainer extends React.Component {
 
     render() {
         return (
-            <>
+            <div id="center-container">
                 <TweetFeed shouldDisplay={this.state.displayTweetFeed} profile={this.props.profile}/>
-                <ProfilePage shouldDisplay={this.state.displayProfilePage} profile={this.props.profile}/>
-            </>
+                <ProfilePage shouldDisplay={this.state.displayProfilePage} profile={this.props.profile} returnToTweetFeedFunction={this.props.returnToTweetFeedFunction}/>
+            </div>
         )
     }
-
-    openProfilePage() {
-        alert("openProfilePage");
-        this.setState({displayTweetFeed: false, displayProfilePage: true});
-    };
-
-    returnToTweetFeed() {
-        alert("returnToTweetFeed");
-        this.setState({displayTweetFeed: true, displayProfilePage: false});
-    }
-
 }
 
-// function showTweets(props) {
-//     const tweetFid = [];
-//
-//     return (
-//         <>
-//             {tweetFid.map(tweet => {return <Tweet/>})}
-//         </>
-//
-//     )
-// }
+CenterContainer.propTypes = {
+    returnToTweetFeedFunction: PropTypes.func.isRequired
+};

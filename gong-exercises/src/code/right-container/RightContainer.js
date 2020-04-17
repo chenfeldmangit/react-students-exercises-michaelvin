@@ -28,7 +28,7 @@ class RightContainer extends React.Component {
                     <TrendObject/>
 
                     <div className="right-container-title-text">
-                        <a href="" rel="next" target="_blank">Show more</a>
+                        <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">Show more</a>
                     </div>
 
                 </div>

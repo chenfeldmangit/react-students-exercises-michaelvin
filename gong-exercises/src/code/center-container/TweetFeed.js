@@ -3,60 +3,34 @@ import '../../App.css';
 import '../../stylesheets/TwitterStylesheet.css'
 
 import Tweet from "./Tweet";
-import TweetObject from "./TweetObject";
+import TweetObject from "../tweetObjects/TweetObject";
+import TweetListObject from "../tweetObjects/TweetListObject";
 
-
-import shmul from "../../resources/shmul.webp"
 import PropTypes from "prop-types";
+
 
 class TweetFeed extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            display: '',
-            tweetContent: ""
-        };
-        if (!this.props.shouldDisplay) {
-            this.state["display"] = "none";
-        } else {
-            this.state["display"] = "flex";
-        }
-
-        this.handleFieldChange = this.handleFieldChange.bind(this);
-    }
-
-    handleFieldChange(event){
-        console.log(`Calling handle change with values ${event.target.name} ${event.target.value}`);
-        this.setState({tweetContent: event.target.value});
-    }
-
-    tweet() {
-        console.log(event.target);
-        // let newTweetContent = event;
-        // let newTweetObject = new TweetObject("", Date.now(), this.profile.name, this.profile.id, getProfileImage(), newTweetContent);
-        // let jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
-        // let tweetList = TweetList.fromJson(jsonTweetList);
-        // tweetList.addTweet(newTweetObject);
-        // localStorage.setItem("tweetList", JSON.stringify(tweetList.tweets));
+        this.state = { tweetContent: "" };
     }
 
     render() {
         return (
-            <div id="tweet-feed" style={{display: this.state.display}}>
+            <div id="tweet-feed" style={{display: this.props.shouldDisplay ? "flex" : "none"}}>
 
                 <h1 id="tweet-feed-sticky-banner">Home</h1>
 
                 <div id="user-tweet">
                     <div className="user-tweet-tweet-raw">
                         <div>
-                            {/*<img className="user-tweet-img" alt="" src={require(getProfileImage())}/>*/}
-                            {/*<img className="user-tweet-img" alt="" src={require('../../resources/shmul.webp')}/>*/}
-                            <img className="user-tweet-img" alt="" src={shmul}/>
+                            {/*<img className="user-tweet-img" alt="" src={getProfileImage}/>*/}
+                            <img className="user-tweet-img" alt="" src={require('../../resources/shmul.webp')}/>
                         </div>
 
                         <div>
-                            <textarea id="user-tweet-input" name="input-tweet-box" cols="140" rows="5" maxLength="280" placeholder="What's happening?"/>
+                            <textarea id="user-tweet-input" name="input-tweet-box" cols="140" rows="5" maxLength="280" placeholder="What's happening?" value={this.state.tweetContent} onChange={this.handleFieldChange}/>
                         </div>
                     </div>
 
@@ -64,23 +38,18 @@ class TweetFeed extends React.Component {
                         <div>
                         </div>
                         <div>
-                            <button className="tweet-button" onClick={this.tweet}>Tweet</button>
-                            {/*<button className="tweet-button">Tweet</button>*/}
+                            {this.state.tweetContent.length >= 3 ?
+                                <button className="tweet-button" onClick={this.tweet}>Tweet</button> :
+                                <button className="tweet-button tweet-button-disabled">Tweet</button>
+                            }
                         </div>
                     </div>
-
-                    <form onSubmit={this.handleSubmit}>
-                        <textarea id="user-tweet-input" name="input-tweet-box" cols="140" rows="5" maxLength="280" placeholder="What's happening?" value={this.state.tweetContent} onChange={this.handleFieldChange}/>
-                        {this.state.tweetContent.length > 3 ?
-                            <button className="tweet-button" type="submit" onClick={this.tweet}>Tweet</button> :
-                            <button className="tweet-button" type="submit">Tweet</button>
-                        }
-                    </form>
 
                 </div>
 
                 <div id="tweets">
                     {showTweetsFeed()}
+                    {/*{this.showTweetsFeed}*/}
                 </div>
 
             </div>
@@ -93,14 +62,40 @@ class TweetFeed extends React.Component {
         createTweetList();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        {showTweetsFeed()}
-    }
+    showTweetsFeed = (props) => {
+        const jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
+        const tweetList = TweetListObject.fromJson(jsonTweetList);
+
+        return (
+            <>
+                {tweetList.tweets.map(item => {
+                    return <Tweet tweetData={item} key={item.tweetId}/>
+                })}
+            </>
+        )
+    };
+
+    handleFieldChange = (event) => {
+        this.setState({tweetContent: event.target.value});
+    };
+
+    tweet = (event) => {
+        let userProfile = JSON.parse(localStorage.getItem("userProfile"));
+        getProfileImage();
+        let newTweetObject = new TweetObject("", Date.now(), userProfile.name, userProfile.id, getProfileImage(), this.state.tweetContent);
+        let jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
+        let tweetList = TweetListObject.fromJson(jsonTweetList);
+        tweetList.addTweet(newTweetObject);
+        localStorage.setItem("tweetList", JSON.stringify(tweetList.tweets));
+
+        this.setState({tweetContent: event.target.value});
+    };
 }
 
 function getProfileImage() {
     let userProfile = JSON.parse(localStorage.getItem("userProfile"));
     return userProfile.profileImgSrc;
+    // return "require('"+userProfile.profileImgSrc+"')";
 }
 
 function createTweetIdEnumerator() {
@@ -115,7 +110,7 @@ function createTweetListForTesting() {
     if (tweetList == null) {
         localStorage.setItem("tweetList", JSON.stringify([
             {
-                tweetId: "#tweet-1",
+                tweetId: "#tweet-100",
                 timestamp: Date.now(),
                 userName: "Adi",
                 userId: "@Adi",
@@ -124,7 +119,7 @@ function createTweetListForTesting() {
                 isLiked: false
             },
             {
-                tweetId: "#tweet-2",
+                tweetId: "#tweet-101",
                 timestamp: Date.now(),
                 userName: "Michael",
                 userId: "@Michael",
@@ -145,50 +140,18 @@ function createTweetList() {
 
 function showTweetsFeed(props) {
     const jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
-    const tweetList = TweetList.fromJson(jsonTweetList);
+    const tweetList = TweetListObject.fromJson(jsonTweetList);
 
     return (
         <>
             {tweetList.tweets.map(item => {
-                return <Tweet tweetData={item}/>
+                return <Tweet tweetData={item} key={item.tweetId}/>
             })}
-            </>
+        </>
     )
 }
 
-class TweetList {
-
-    constructor(tweets) {
-        this.tweets = tweets;
-    }
-
-    static fromJson(json) {
-        return json.length === 0 ? new TweetList([]) : new TweetList(json.map(tweet => TweetObject.fromJson(tweet)));
-    }
-
-    addTweet(tweet) {
-        this.tweets.splice(0, 0, tweet);
-    }
-
-    getTweetById(tweetId) {
-        return this.tweets.filter(tweet => tweet.tweetId === tweetId)[0];
-    }
-
-    removeTweetById(tweetId) {
-        this.tweets = this.tweets.filter(tweet => tweet.tweetId !== tweetId);
-    }
-}
-
-// function showTweets(props) {
-//     const tweetFid = [];
-//
-//     return (
-//         <>
-//             {tweetFid.map(tweet => {return <Tweet/>})}
-//         </>
-//
-//     )
-// }
+export default TweetFeed;
 
 TweetFeed.propTypes = {
     shouldDisplay: PropTypes.bool.isRequired
@@ -197,5 +160,3 @@ TweetFeed.propTypes = {
 TweetFeed.defaultProps = {
     shouldDisplay: true
 };
-
-export default TweetFeed;

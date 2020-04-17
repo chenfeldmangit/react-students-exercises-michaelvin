@@ -6,10 +6,9 @@
     flex-direction: row;
 }
 
-#left-container, #tweet-feed, #profile-page, #right-container {
+#left-container, #center-container, #right-container {
     display: flex;
     flex-direction: column;
-    /*border-style: dotted;*/
 }
 
 #left-container {
@@ -18,16 +17,20 @@
     justify-content: flex-start;
 }
 
-#tweet-feed {
+#center-container {
     /*flex-grow: 3;*/
     width: 60%;
+}
+
+#tweet-feed {
     position: relative;
     border-style: solid;
     border-color: #F5F8FA;
+    flex-direction: column;
 }
 
 #profile-page {
-
+    flex-direction: column;
 }
 
 #right-container {
@@ -195,7 +198,7 @@
 #search, #trends, #follow {
     background-color: #F5F8FA;
     border-style: none;
-    margin: 1em 4em 1em 4em;
+    margin: 1em 2em 1em 2em;
 }
 
 #search {
@@ -308,7 +311,7 @@
     font-weight: bold;
 }
 
-#show-profile-location-pin {
+#profile-bio-location-pin {
     width: 15px;
 }
 
@@ -323,8 +326,9 @@
 
 /* dialog */
 
-.dialog {
-    display: none;
+#edit-profile-page {
+    /*display: none;*/
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -335,20 +339,21 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-.edit-profile {
+#edit-profile-dialog {
     top: 15%;
     border-radius: 5%;
     border-style: none;
     background-color: white;
-    z-index: 1
+    z-index: 1;
+    width: 500px;
 }
 
-.edit-profile-control {
+#edit-profile-control {
     display: flex;
     justify-content: space-between;
 }
 
-.edit-profile-control-sub {
+#edit-profile-control-sub {
     display: flex;
     justify-content: flex-start;
 }
@@ -414,6 +419,10 @@
     color: white;
     align-items: center;
     font-weight: bold;
+}
+
+.tweet-button-disabled {
+    background-color: #999999;
 }
 
 #left-menu-profile-img, #profile-img, #edit-profile-profile-img {

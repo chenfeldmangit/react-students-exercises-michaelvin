@@ -4,7 +4,7 @@ import '../../stylesheets/TwitterStylesheet.css'
 import PropTypes from "prop-types";
 
 import TweetActionBar from "./TweetActionBar";
-import TweetObject from "./TweetObject";
+import TweetObject from "../tweetObjects/TweetObject";
 
 import shmul from "../../resources/shmul.webp"
 
