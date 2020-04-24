@@ -6,6 +6,11 @@
     flex-direction: row;
 }
 
+#connection-page {
+    display: flex;
+    width: 100%;
+}
+
 #left-container, #center-container, #right-container {
     display: flex;
     flex-direction: column;
@@ -24,8 +29,7 @@
 
 #tweet-feed {
     position: relative;
-    border-style: solid;
-    border-color: #F5F8FA;
+    border: solid #F5F8FA;
     flex-direction: column;
 }
 
@@ -33,10 +37,52 @@
     flex-direction: column;
 }
 
+#notification-feed {
+    flex-direction: column;
+}
+
 #right-container {
     /*flex-grow: 2;*/
     width: 25%;
     justify-content: flex-start;
+}
+
+/* connection-page */
+
+#connection-page-left {
+    width: 50%;
+    background-color: #1DA1F3;
+}
+
+#connection-page-right {
+    width: 50%;
+}
+
+#connection-page-right-content {
+    justify-content: center;
+    padding: 5em 10em 5em 10em;
+    align-self: center;
+}
+
+#connection-page-button-signup, #connection-page-button-login {
+    border: solid thin #1DA1F3;
+    text-align: center;
+    width: 25em;
+    border-radius: 15em;
+    font-weight: bold;
+    font-size: medium;
+    padding: 0.75em 0 0.75em 0;
+    margin-bottom: 0.5em;
+}
+
+#connection-page-button-signup {
+    background-color: #1DA1F3;
+    color: white;
+}
+
+#connection-page-button-login {
+    background-color: white;
+    color: #1DA1F3;
 }
 
 /*left-side-container*/
@@ -97,15 +143,13 @@
     z-index: 1;
     background-color: white;
     margin: 0;
-    border-style: solid;
-    border-color: white;
+    border: solid white;
     border-bottom-color: #F5F8FA;
     padding: 0.5em;
 }
 
 #user-tweet {
-    border-style: solid;
-    border-color: white;
+    border: solid white;
     border-bottom-color: #F5F8FA;
 }
 
@@ -146,8 +190,7 @@
 }
 
 .tweet {
-    border-style: solid;
-    border-color: white;
+    border: solid white;
     border-bottom-color: #F5F8FA;
 }
 
@@ -194,6 +237,12 @@
 
 
 /* right-side-container */
+
+#logout {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 2em 0 2em;
+}
 
 #search, #trends, #follow {
     background-color: #F5F8FA;
@@ -261,8 +310,7 @@
     border-radius: 20px;
     background-color: #F5F8FA;
     color: #1DA1F3;
-    border-style: solid;
-    border-color: #1DA1F3;
+    border: solid #1DA1F3;
     align-items: center;
     font-weight: bold;
 }
@@ -286,10 +334,17 @@
 }
 
 .right-container-title, .trend-object, .follow-object {
-    border-style: solid;
-    border-width: thin;
-    border-color: #F5F8FA;
+    border: solid thin #F5F8FA;
     border-bottom-color: #D8D9DA;
+}
+
+#logout-button {
+    border-style: none;
+    background-color: white;
+    color: #1DA1F3;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 0.5em;
 }
 
 /* profile-page */
@@ -389,6 +444,41 @@
 }
 .edit-profile-input-container:active .edit-profile-input-label {
     transform: translate(0, 4px) scale(.75);
+}
+
+/* notification-feed */
+
+#notification-feed-header {
+    border-bottom: solid #F5F8FA;
+}
+
+#notification-feed-header-sub-up {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0 1em 0;
+}
+
+#notification-feed-header-text {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#notification-feed-header-sub-down {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0.5em;
+    font-size: 20px;
+}
+
+.notification-feed-header-tab {
+    width: 20em;
+    border-bottom: black solid;
+    margin: 0 1em 0 1em;
+    text-align: center;
+}
+
+.notification-type-img {
+    width: 40px;
 }
 
 /* common */

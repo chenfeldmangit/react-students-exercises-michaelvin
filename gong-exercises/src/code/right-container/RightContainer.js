@@ -1,8 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import '../../stylesheets/TwitterStylesheet.css'
-
-import gear from "../../resources/gear.svg"
+import PropTypes from "prop-types";
 
 
 class RightContainer extends React.Component {
@@ -10,6 +9,10 @@ class RightContainer extends React.Component {
     render() {
         return (
             <div id="right-container">
+
+                <div id="logout">
+                    <button id="logout-button" onClick={this.props.logOutFromTwitter}>Log Out</button>
+                </div>
 
                 <div id="search">
                     <label>
@@ -21,7 +24,7 @@ class RightContainer extends React.Component {
                     <div className="right-container-title">
                         <div className="right-container-title-text">Trends for you</div>
                         {/* <!--                <div><object class="svgs" data="myTwitter/resources/gear.svg"> </object></div>-->*/}
-                        <div><img src={gear} alt="settings" className="menu-button-img"/></div>
+                        <div><img src={require("../../resources/gear.svg")} alt="settings" className="menu-button-img"/></div>
                     </div>
 
                     <TrendObject/>
@@ -85,3 +88,7 @@ class TrendObject extends React.Component {
 }
 
 export default RightContainer;
+
+RightContainer.propTypes = {
+    logOutFromTwitter: PropTypes.func.isRequired
+};

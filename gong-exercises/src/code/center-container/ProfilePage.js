@@ -19,7 +19,7 @@ class ProfilePage extends React.Component {
         return (
             <>
 
-                <div id="profile-page" style={{display: this.props.shouldDisplay ? "flex" : "none"}}>
+                <div id="profile-page">
                     <div className="profile-page-upper-line">
                         <div>
                             <button className="return-button" onClick={this.props.returnToTweetFeedFunction}>
@@ -66,17 +66,17 @@ class ProfilePage extends React.Component {
         userProfile.backgroundImgSrc = this.state.profile.backgroundImgSrc;
         localStorage.setItem("userProfile", JSON.stringify(userProfile));
 
-        this.setState({["profile"]: userProfile});
+        this.setState({"profile": userProfile});
 
         this.closeEditProfileDialog();
     };
 
     openEditProfileDialog = () => {
-        this.setState({["shouldDisplayEditProfilePage"]: true})
+        this.setState({"shouldDisplayEditProfilePage": true})
     };
 
     closeEditProfileDialog = () => {
-        this.setState({["shouldDisplayEditProfilePage"]: false})
+        this.setState({"shouldDisplayEditProfilePage": false})
     };
 }
 

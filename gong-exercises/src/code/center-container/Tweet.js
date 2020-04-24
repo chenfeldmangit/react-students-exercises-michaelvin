@@ -24,6 +24,10 @@ class Tweet extends React.Component {
                             <strong><label className="tweet-who-name">{this.props.tweetData.userName}</label></strong>
                             <label className="tweet-who-id">{this.props.tweetData.userId}</label>
                         </div>
+                        <div>
+                            <label className="tweet-who-id" style={{margin: "0 0.5em 0 0.5em"}}> * </label>
+                            <label className="tweet-who-id">{this.convertTimestampToTime(this.props.tweetData.timestamp)}</label>
+                        </div>
                     </div>
                     <div className="tweet-content">
                         {this.props.tweetData.tweetContent}
@@ -34,6 +38,11 @@ class Tweet extends React.Component {
             </>
         )
     }
+
+    convertTimestampToTime = (tweetTimestamp) => {
+        let dateObj = new Date(tweetTimestamp * 1000);
+        return dateObj.toUTCString();
+    };
 }
 
 Tweet.propTypes = {

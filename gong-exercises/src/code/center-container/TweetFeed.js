@@ -18,15 +18,16 @@ class TweetFeed extends React.Component {
 
     render() {
         return (
-            <div id="tweet-feed" style={{display: this.props.shouldDisplay ? "flex" : "none"}}>
+            <div id="tweet-feed">
 
                 <h1 id="tweet-feed-sticky-banner">Home</h1>
 
                 <div id="user-tweet">
                     <div className="user-tweet-tweet-raw">
                         <div>
+                            {/*<img className="user-tweet-img" alt="" src={require(this.props.profile.backgroundImgSrc)}/>*/}
                             {/*<img className="user-tweet-img" alt="" src={getProfileImage}/>*/}
-                            <img className="user-tweet-img" alt="" src={require('../../resources/shmul.webp')}/>
+                            {/*<img className="user-tweet-img" alt="" src={require('../../resources/shmul.webp')}/>*/}
                         </div>
 
                         <div>
@@ -55,13 +56,7 @@ class TweetFeed extends React.Component {
         )
     }
 
-    componentDidMount() {
-        createTweetIdEnumerator();
-        createTweetListForTesting();
-        createTweetList();
-    }
-
-    showTweetsFeed = (props) => {
+    showTweetsFeed = () => {
         const jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
         const tweetList = TweetListObject.fromJson(jsonTweetList);
 
@@ -95,46 +90,6 @@ function getProfileImage() {
     let userProfile = JSON.parse(localStorage.getItem("userProfile"));
     return userProfile.profileImgSrc;
     // return "require('"+userProfile.profileImgSrc+"')";
-}
-
-function createTweetIdEnumerator() {
-    let idEnumerator = localStorage.getItem("idEnumerator");
-    if (idEnumerator == null) {
-        localStorage.setItem("idEnumerator", "0");
-    }
-}
-
-function createTweetListForTesting() {
-    let tweetList = localStorage.getItem("tweetList");
-    if (tweetList == null) {
-        localStorage.setItem("tweetList", JSON.stringify([
-            {
-                tweetId: "#tweet-100",
-                timestamp: Date.now(),
-                userName: "Adi",
-                userId: "@Adi",
-                userProfileImg: "../../resources/shmul.webp",
-                tweetContent: "something",
-                isLiked: false
-            },
-            {
-                tweetId: "#tweet-101",
-                timestamp: Date.now(),
-                userName: "Michael",
-                userId: "@Michael",
-                userProfileImg: "../../resources/shmul.webp",
-                tweetContent: "something else",
-                isLiked: false
-            }
-        ]));
-    }
-}
-
-function createTweetList() {
-    let tweetList = localStorage.getItem("tweetList");
-    if (tweetList == null) {
-        localStorage.setItem("tweetList", JSON.stringify([]));
-    }
 }
 
 export default TweetFeed;
