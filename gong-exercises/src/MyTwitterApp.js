@@ -19,10 +19,31 @@ class MyTwitterApp extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {someOneLoggedIn: false, displayTweetFeed: false, displayProfilePage: false, displayNotificationsPage: false};
+        this.state = {someOneLoggedIn: false, displayTweetFeed: false, displayProfilePage: false, displayNotifications: false};
 
         TweeterConfig.config();
     }
+
+    logInToTwitter = () => {
+        this.setState({someOneLoggedIn: true, displayTweetFeed: true, displayProfilePage: false, displayNotifications: false});
+    };
+
+    logOutFromTwitter = () => {
+        this.setState({someOneLoggedIn: false, displayTweetFeed: false, displayProfilePage: false, displayNotifications: false});
+        store.dispatch(logOut());
+    };
+
+    displayProfilePage = () => {
+        this.setState({someOneLoggedIn: true, displayTweetFeed: false, displayProfilePage: true, displayNotifications: false});
+    };
+
+    displayTweetFeed = () => {
+        this.setState({someOneLoggedIn: true, displayTweetFeed: true, displayProfilePage: false, displayNotifications: false});
+    };
+
+    displayNotifications = () => {
+        this.setState({someOneLoggedIn: true, displayTweetFeed: false, displayProfilePage: false, displayNotifications: true});
+    };
 
     render () {
         const userProfile = TweeterConfig.getUserProfile();
@@ -35,12 +56,12 @@ class MyTwitterApp extends React.Component {
                     </>
                 :
                     <>
-                        <LeftContainer profile={userProfile} openProfilePageFunction={this.displayProfilePage} returnToTweetFeedFunction={this.displayTweetFeed}/>
+                        <LeftContainer profile={userProfile} displayProfilePageFunction={this.displayProfilePage} displayTweetFeedFunction={this.displayTweetFeed} displayNotificationsFunction={this.displayNotifications}/>
                         <div id="center-container">
                             {/*{this.state.displayTweetFeed ? <TweetFeed profile={userProfile}/> : <></>}*/}
                             {this.state.displayTweetFeed ? <TweetFeedHook profile={userProfile}/> : <></>}
-                            {this.state.displayProfilePage ? <ProfilePage profile={userProfile} returnToTweetFeedFunction={this.displayTweetFeed}/> : <></>}
-                            {this.state.displayNotificationsPage ? <NotificationsFeed profile={userProfile} returnToTweetFeedFunction={this.displayTweetFeed}/>  : <></>}
+                            {this.state.displayProfilePage ? <ProfilePage profile={userProfile} displayTweetFeedFunction={this.displayTweetFeed}/> : <></>}
+                            {this.state.displayNotifications ? <NotificationsFeed profile={userProfile} displayTweetFeedFunction={this.displayTweetFeed}/>  : <></>}
                         </div>
                         <RightContainer logOutFromTwitter={this.logOutFromTwitter}/>
                     </>
@@ -49,23 +70,6 @@ class MyTwitterApp extends React.Component {
         );
 
     }
-
-    logInToTwitter = () => {
-        this.setState({someOneLoggedIn: true, displayTweetFeed: true, displayProfilePage: false, displayNotificationsPage: false});
-    };
-
-    logOutFromTwitter = () => {
-        this.setState({someOneLoggedIn: false, displayTweetFeed: false, displayProfilePage: false, displayNotificationsPage: false});
-        store.dispatch(logOut());
-    };
-
-    displayProfilePage = () => {
-        this.setState({someOneLoggedIn: true, displayTweetFeed: false, displayProfilePage: true, displayNotificationsPage: false});
-    };
-
-    displayTweetFeed = () => {
-        this.setState({someOneLoggedIn: true, displayTweetFeed: true, displayProfilePage: false, displayNotificationsPage: false});
-    };
 }
 
 export default MyTwitterApp;

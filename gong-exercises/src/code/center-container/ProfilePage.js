@@ -22,7 +22,7 @@ class ProfilePage extends React.Component {
                 <div id="profile-page">
                     <div className="profile-page-upper-line">
                         <div>
-                            <button className="return-button" onClick={this.props.returnToTweetFeedFunction}>
+                            <button className="return-button" onClick={this.props.displayTweetFeedFunction}>
                                 <object className="svgs" data={require("../../resources/back.svg")} title={"return-button"}/>
                             </button>
                         </div>
@@ -80,13 +80,8 @@ class ProfilePage extends React.Component {
     };
 }
 
-export default ProfilePage;
-
 ProfilePage.propTypes = {
-    shouldDisplay: PropTypes.bool.isRequired,
-    returnToTweetFeedFunction: PropTypes.func.isRequired
+    displayTweetFeedFunction: PropTypes.func.isRequired
 };
 
-ProfilePage.defaultProps = {
-    shouldDisplay: false
-};
+export default ProfilePage;

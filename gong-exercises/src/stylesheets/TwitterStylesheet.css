@@ -9,6 +9,8 @@
 #connection-page {
     display: flex;
     width: 100%;
+    height: 100%;
+    position: absolute;
 }
 
 #left-container, #center-container, #right-container {
@@ -55,13 +57,15 @@
 }
 
 #connection-page-right {
+    display: flex;
+    justify-content: center;
     width: 50%;
 }
 
 #connection-page-right-content {
+    display: flex;
     justify-content: center;
-    padding: 5em 10em 5em 10em;
-    align-self: center;
+    flex-direction: column;
 }
 
 #connection-page-button-signup, #connection-page-button-login {

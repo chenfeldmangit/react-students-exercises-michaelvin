@@ -69,9 +69,9 @@ const mapStateToProps = (store) => {
     };
 };
 
-export default connect(mapStateToProps)(LogIn);
-
 LogIn.propTypes = {
     logInToTwitter: PropTypes.func.isRequired,
     closeDialog: PropTypes.func.isRequired
 };
+
+export default connect(mapStateToProps)(LogIn);

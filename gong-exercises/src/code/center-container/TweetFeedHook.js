@@ -96,8 +96,6 @@ function getProfileImage() {
     // return "require('"+userProfile.profileImgSrc+"')";
 }
 
-export default TweetFeedHook;
-
 TweetFeedHook.propTypes = {
     shouldDisplay: PropTypes.bool.isRequired
 };
@@ -105,3 +103,5 @@ TweetFeedHook.propTypes = {
 TweetFeedHook.defaultProps = {
     shouldDisplay: true
 };
+
+export default TweetFeedHook;

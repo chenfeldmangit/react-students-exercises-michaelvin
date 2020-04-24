@@ -6,6 +6,7 @@ import NotificationsListObject from "../notificationsObjects/NotificationsListOb
 import Notification from "../center-container/Notification";
 
 import PropTypes from "prop-types";
+import ProfilePage from "./ProfilePage";
 
 
 function NotificationsFeed(props) {
@@ -53,12 +54,8 @@ function NotificationsFeed(props) {
     );
 }
 
+ProfilePage.propTypes = {
+    displayTweetFeedFunction: PropTypes.func.isRequired
+};
+
 export default NotificationsFeed;
-
-NotificationsFeed.propTypes = {
-    shouldDisplay: PropTypes.bool.isRequired
-};
-
-NotificationsFeed.defaultProps = {
-    shouldDisplay: true
-};

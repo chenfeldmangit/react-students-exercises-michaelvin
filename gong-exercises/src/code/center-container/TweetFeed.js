@@ -6,10 +6,9 @@ import Tweet from "./Tweet";
 import TweetObject from "../tweetObjects/TweetObject";
 import TweetListObject from "../tweetObjects/TweetListObject";
 
-import PropTypes from "prop-types";
-
 
 class TweetFeed extends React.Component {
+    static minimalTweetLength = 3;
 
     constructor(props) {
         super(props);
@@ -39,7 +38,7 @@ class TweetFeed extends React.Component {
                         <div>
                         </div>
                         <div>
-                            {this.state.tweetContent.length >= 3 ?
+                            {this.state.tweetContent.length >= TweetFeed.minimalTweetLength ?
                                 <button className="tweet-button" onClick={this.tweet}>Tweet</button> :
                                 <button className="tweet-button tweet-button-disabled">Tweet</button>
                             }
@@ -93,11 +92,3 @@ function getProfileImage() {
 }
 
 export default TweetFeed;
-
-TweetFeed.propTypes = {
-    shouldDisplay: PropTypes.bool.isRequired
-};
-
-TweetFeed.defaultProps = {
-    shouldDisplay: true
-};

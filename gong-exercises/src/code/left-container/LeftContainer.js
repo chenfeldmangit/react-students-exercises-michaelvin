@@ -16,13 +16,13 @@ class LeftContainer extends React.Component {
                 </div>
 
                 <div id="menu-buttons">
-                    <MenuButton content="Home" src={require("../../resources/home.svg")} onClick={this.props.returnToTweetFeedFunction}/>
+                    <MenuButton content="Home" src={require("../../resources/home.svg")} onClick={this.props.displayTweetFeedFunction}/>
                     <MenuButton content="Explore" src={require("../../resources/hashtag.svg")}/>
-                    <MenuButton content="Notifications" src={require("../../resources/bell.svg")}/>
+                    <MenuButton content="Notifications" src={require("../../resources/bell.svg")} onClick={this.props.displayNotificationsFunction}/>
                     <MenuButton content="Messages" src={require("../../resources/mail.svg")}/>
                     <MenuButton content="Bookmarks" src={require("../../resources/bookmark.svg")}/>
                     <MenuButton content="Lists" src={require("../../resources/clipboard.svg")}/>
-                    <MenuButton id="left-menu-profile-img" content="Profile" src={shmuul} onClick={this.props.openProfilePageFunction}/>
+                    <MenuButton id="left-menu-profile-img" content="Profile" src={shmuul} onClick={this.props.displayProfilePageFunction}/>
                     {/*<MenuButton id="left-menu-profile-img" content="Profile" src={this.props.profile.profileImgSrc} onClick={this.props.openProfilePageFunction}/>*/}
                     <MenuButton content="More" src={require("../../resources/more.svg")}/>
                 </div>
@@ -59,9 +59,10 @@ MenuButton.defaultProps = {
     id: ""
 };
 
-export default LeftContainer;
-
 LeftContainer.propTypes = {
-    openProfilePageFunction: PropTypes.func.isRequired,
-    returnToTweetFeedFunction: PropTypes.func.isRequired
+    displayProfilePageFunction: PropTypes.func.isRequired,
+    displayTweetFeedFunction: PropTypes.func.isRequired,
+    displayNotificationsFunction: PropTypes.func.isRequired
 };
+
+export default LeftContainer;

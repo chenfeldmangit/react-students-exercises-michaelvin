@@ -24,7 +24,7 @@ export default class CenterContainer extends React.Component {
         return (
             <div id="center-container">
                 <TweetFeed shouldDisplay={this.state.displayTweetFeed} profile={this.props.profile}/>
-                <ProfilePage shouldDisplay={this.state.displayProfilePage} profile={this.props.profile} returnToTweetFeedFunction={this.props.returnToTweetFeedFunction}/>
+                <ProfilePage shouldDisplay={this.state.displayProfilePage} profile={this.props.profile} displayTweetFeedFunction={this.props.returnToTweetFeedFunction}/>
             </div>
         )
     }

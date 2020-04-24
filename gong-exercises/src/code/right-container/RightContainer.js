@@ -87,8 +87,8 @@ class TrendObject extends React.Component {
     }
 }
 
-export default RightContainer;
-
 RightContainer.propTypes = {
     logOutFromTwitter: PropTypes.func.isRequired
 };
+
+export default RightContainer;

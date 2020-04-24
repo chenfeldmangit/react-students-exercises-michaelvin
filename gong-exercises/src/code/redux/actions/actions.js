@@ -10,7 +10,6 @@ export let signUpAction = (user) => {
 };
 
 export let loadUsersAction = (users) => {
-    console.log(users);
     return {
         type: LOAD_USERS,
         users
