@@ -1,13 +1,14 @@
 import React from 'react';
 import '../../App.css';
 import '../../stylesheets/TwitterStylesheet.css'
+
 import store from '../redux/store';
 import {connect} from 'react-redux';
+import {uploadUsersAction} from "../redux/actions/connectionActions";
 
 import SignUp from "./SignUp";
 import Login from "./LogIn";
 import PropTypes from "prop-types";
-import {loadUsersAction} from "../redux/actions/actions";
 
 
 class ConnectionPage extends React.Component {
@@ -15,8 +16,13 @@ class ConnectionPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {displaySignUpDialog: false, displayLogInDialog: false};
-        this.loadExistingUsers();
+        this.uploadExistingUsers();
     }
+
+    uploadExistingUsers = () => {
+        let usersList = JSON.parse(localStorage.getItem("usersList"));
+        store.dispatch(uploadUsersAction(usersList));
+    };
 
     openSignUpDialog = () => {
         this.setState({"displaySignUpDialog": true})
@@ -32,11 +38,6 @@ class ConnectionPage extends React.Component {
         } else {
             this.setState({"displayLogInDialog": false})
         }
-    };
-
-    loadExistingUsers = (event) => {
-        let usersList = JSON.parse(localStorage.getItem("usersList"));
-        store.dispatch(loadUsersAction(usersList));
     };
 
     render() {
@@ -65,7 +66,7 @@ class ConnectionPage extends React.Component {
 
 const mapStateToProps = (store) => {
     return {
-        usersList: store
+        usersList: store.usersList.usersList
     };
 };
 

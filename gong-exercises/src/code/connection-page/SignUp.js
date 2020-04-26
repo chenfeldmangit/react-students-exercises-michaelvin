@@ -6,7 +6,7 @@ import '../../App.css';
 import '../../stylesheets/TwitterStylesheet.css';
 
 import FormInput from "../center-container/FormInput";
-import {signUpAction} from "../redux/actions/actions";
+import {signUpAction} from "../redux/actions/connectionActions";
 import PropTypes from "prop-types";
 
 
@@ -26,7 +26,7 @@ const SignUp = (props) => {
 
     return (
         <div id="edit-profile-page">
-            <dialog open id="edit-profile-dialog">
+            <dialog open className="connection-dialog">
                 <div>
                     <button className="return-button" onClick={props.closeDialog}>
                         <object className="svgs" data={require("../../resources/back.svg")} title={"return-button"}/>

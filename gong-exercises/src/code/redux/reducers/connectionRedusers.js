@@ -1,10 +1,11 @@
 
-import {SIGN_UP, LOGIN, LOAD_USERS, LOGOUT} from '../actionTypes';
+import {SIGN_UP, LOGIN, UPLOAD_USERS, LOGOUT} from '../actionTypes';
 
 
-let reducer = function(state = [], action) {
+let connectionReducer = function(state = [], action) {
     switch (action.type) {
         case SIGN_UP:
+            // return [...state, [action.user]];
             return {...state, usersList:[...state.usersList, {...action.user}]};
         case LOGIN:
             return {...state, loggedInUser:{...action.user}};
@@ -13,7 +14,7 @@ let reducer = function(state = [], action) {
                 return {...state, loggedInUser:{...action.user}};
             }
             return state;
-        case LOAD_USERS:
+        case UPLOAD_USERS:
             return {...state, usersList:action.users};
         case LOGOUT:
             return {...state, loggedInUser:{}};
@@ -22,4 +23,4 @@ let reducer = function(state = [], action) {
     }
 };
 
-export default reducer;
+export default connectionReducer;

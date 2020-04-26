@@ -7,7 +7,7 @@ import '../../stylesheets/TwitterStylesheet.css';
 import FormInput from "../center-container/FormInput";
 import PropTypes from "prop-types";
 import store from "../redux/store";
-import {logInAction1, logInAction2} from "../redux/actions/actions";
+import {logInAction1, logInAction2} from "../redux/actions/connectionActions";
 
 
 const LogIn = (props) => {
@@ -17,7 +17,7 @@ const LogIn = (props) => {
     const validateUser = (event) => {
 
         /* option 1 */
-        props.usersList.map(item => {
+        props.usersList.forEach(item => {
             if (item.username === user.username && item.password === user.password) {
                 store.dispatch(logInAction1({user}));
                 props.logInToTwitter();
@@ -36,7 +36,7 @@ const LogIn = (props) => {
 
     return (
         <div id="edit-profile-page">
-            <dialog open id="edit-profile-dialog">
+            <dialog open className="connection-dialog">
                 <div>
                     <button className="return-button" onClick={props.closeDialog}>
                         <object className="svgs" data={require("../../resources/back.svg")} title={"return-button"}/>
@@ -65,7 +65,7 @@ const LogIn = (props) => {
 
 const mapStateToProps = (store) => {
     return {
-        usersList: [...store.usersList]
+        usersList: [...store.usersList.usersList]
     };
 };
 

@@ -10,6 +10,12 @@ import shmul from "../../resources/shmul.webp"
 
 
 class Tweet extends React.Component {
+
+    convertTimestampToTime = (tweetTimestamp) => {
+        let dateObj = new Date(tweetTimestamp * 1000);
+        return dateObj.toUTCString();
+    };
+
     render() {
         return (
             <>
@@ -33,29 +39,24 @@ class Tweet extends React.Component {
                         {this.props.tweetData.tweetContent}
                     </div>
 
-                    <TweetActionBar isliked={this.props.tweetData.isLiked}/>
+                    <TweetActionBar tweetId={this.props.tweetData.tweetId} isLiked={this.props.tweetData.isLiked}/>
                 </div>
             </>
         )
     }
-
-    convertTimestampToTime = (tweetTimestamp) => {
-        let dateObj = new Date(tweetTimestamp * 1000);
-        return dateObj.toUTCString();
-    };
 }
 
 Tweet.propTypes = {
-    tweetData: PropTypes.instanceOf(TweetObject).isRequired
+    tweetData: PropTypes.instanceOf(TweetObject).isRequired,
 };
 
-TweetObject.propTypes = {
-    id: PropTypes.instanceOf(String).isRequired,
-    userProfileImg: PropTypes.instanceOf(String).isRequired,
-    userName: PropTypes.instanceOf(String).isRequired,
-    userId: PropTypes.instanceOf(String).isRequired,
-    tweetContent: PropTypes.instanceOf(String).isRequired,
-    isLiked: PropTypes.bool.isRequired
-};
+// TweetObject.propTypes = {
+//     tweetId: PropTypes.instanceOf(String).isRequired,
+//     userProfileImg: PropTypes.instanceOf(String).isRequired,
+//     userName: PropTypes.instanceOf(String).isRequired,
+//     userId: PropTypes.instanceOf(String).isRequired,
+//     tweetContent: PropTypes.instanceOf(String).isRequired,
+//     isLiked: PropTypes.bool.isRequired
+// };
 
 export default Tweet;

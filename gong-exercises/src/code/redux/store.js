@@ -1,6 +1,13 @@
-import { createStore } from 'redux'
-import reducer from '../redux/reducers/redusers'
+import {createStore, combineReducers} from 'redux'
+import connectionReducer from './reducers/connectionRedusers'
+import tweetReducer from './reducers/tweetRedusers'
 
-const store = createStore(reducer, [], window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+const combinedReducers = combineReducers({
+    usersList: connectionReducer,
+    tweetList: tweetReducer
+});
+
+const store = createStore(combinedReducers, [], window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

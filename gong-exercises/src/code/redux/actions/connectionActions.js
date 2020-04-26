@@ -1,18 +1,11 @@
 
-import {SIGN_UP, LOGIN, LOAD_USERS, LOGOUT} from '../actionTypes';
+import {SIGN_UP, LOGIN, UPLOAD_USERS, LOGOUT} from '../actionTypes';
 
 
 export let signUpAction = (user) => {
     return {
         type: SIGN_UP,
         user
-    }
-};
-
-export let loadUsersAction = (users) => {
-    return {
-        type: LOAD_USERS,
-        users
     }
 };
 
@@ -37,5 +30,12 @@ export let logInAction2 = (user) => {
 export let logOut = () => {
     return {
         type: LOGOUT,
+    }
+};
+
+export let uploadUsersAction = (users) => {
+    return {
+        type: UPLOAD_USERS,
+        users
     }
 };

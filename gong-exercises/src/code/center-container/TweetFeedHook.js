@@ -7,15 +7,24 @@ import TweetObject from "../tweetObjects/TweetObject";
 import TweetListObject from "../tweetObjects/TweetListObject";
 
 import PropTypes from "prop-types";
+import store from "../redux/store";
+import {uploadTweetsAction, tweetAction} from "../redux/actions/tweetActions";
+import {connect} from "react-redux";
 
 
 function TweetFeedHook(props) {
 
     const [tweetContent, setTweetContent] = useState("");
+    const minimalTweetLength = 3;
 
     useEffect( () => {
 
     },[tweetContent]);
+
+    useEffect(() => {
+        let tweetList = JSON.parse(localStorage.getItem("tweetList"));
+        store.dispatch(uploadTweetsAction(tweetList));
+    }, []);
 
     const showTweetsFeed = () => {
         const jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
@@ -36,7 +45,7 @@ function TweetFeedHook(props) {
 
     const activateTweetButton = () => {
         return (
-            tweetContent.length >= 3 ?
+            tweetContent.length >= minimalTweetLength ?
                 <button className="tweet-button" onClick={tweet}>Tweet</button> :
                 <button className="tweet-button tweet-button-disabled">Tweet</button>
         )
@@ -44,18 +53,19 @@ function TweetFeedHook(props) {
 
     const tweet = (event) => {
         let userProfile = JSON.parse(localStorage.getItem("userProfile"));
-        getProfileImage();
-        let newTweetObject = new TweetObject("", Date.now(), userProfile.name, userProfile.id, getProfileImage(), tweetContent);
+        let newTweetObject = new TweetObject("", Date.now(), userProfile.name, userProfile.id, userProfile.profileImgSrc, tweetContent);
         let jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
         let tweetList = TweetListObject.fromJson(jsonTweetList);
         tweetList.addTweet(newTweetObject);
         localStorage.setItem("tweetList", JSON.stringify(tweetList.tweets));
 
         setTweetContent(event.target.value);
+
+        store.dispatch(tweetAction(newTweetObject));
     };
 
     return (
-            <div id="tweet-feed" style={{display: props.shouldDisplay ? "flex" : "none"}}>
+            <div id="tweet-feed">
 
                 <h1 id="tweet-feed-sticky-banner">Home</h1>
 
@@ -90,11 +100,11 @@ function TweetFeedHook(props) {
     );
 }
 
-function getProfileImage() {
-    let userProfile = JSON.parse(localStorage.getItem("userProfile"));
-    return userProfile.profileImgSrc;
-    // return "require('"+userProfile.profileImgSrc+"')";
-}
+const mapStateToProps = (store) => {
+    return {
+        tweetList: store.tweetList.tweetList
+    };
+};
 
 TweetFeedHook.propTypes = {
     shouldDisplay: PropTypes.bool.isRequired
@@ -104,4 +114,4 @@ TweetFeedHook.defaultProps = {
     shouldDisplay: true
 };
 
-export default TweetFeedHook;
+export default connect(mapStateToProps)(TweetFeedHook);

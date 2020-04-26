@@ -2,17 +2,17 @@ import React from 'react';
 import './App.css';
 import './stylesheets/TwitterStylesheet.css'
 
+import store from "./code/redux/store";
+import {logOut} from "./code/redux/actions/connectionActions";
+
+import TweeterConfig from "./code/utils/TweeterConfig";
+import ConnectionPage from "./code/connection-page/ConnectionPage";
 import LeftContainer from './code/left-container/LeftContainer';
 import RightContainer from './code/right-container/RightContainer';
 import ProfilePage from "./code/center-container/ProfilePage";
 // import TweetFeed from "./code/center-container/TweetFeed";
 import TweetFeedHook from "./code/center-container/TweetFeedHook";
 import NotificationsFeed from "./code/center-container/NotificationsFeed";
-
-import TweeterConfig from "./code/utils/TweeterConfig";
-import ConnectionPage from "./code/loging/ConnectionPage";
-import store from "./code/redux/store";
-import {logOut} from "./code/redux/actions/actions";
 
 
 class MyTwitterApp extends React.Component {

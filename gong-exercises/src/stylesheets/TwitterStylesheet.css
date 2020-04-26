@@ -89,6 +89,16 @@
     color: #1DA1F3;
 }
 
+.connection-dialog {
+    top: 20%;
+    border-radius: 5%;
+    border-style: none;
+    background-color: white;
+    z-index: 1;
+    width: 500px;
+    height: 250px;
+}
+
 /*left-side-container*/
 
 #menu-top {
