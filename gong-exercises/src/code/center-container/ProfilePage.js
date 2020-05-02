@@ -1,6 +1,4 @@
 import React from 'react';
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css'
 
 import profileBackground from "../../resources/picture.jpg"
 import profileImg from "../../resources/shmul.webp"

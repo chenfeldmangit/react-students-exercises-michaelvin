@@ -8,6 +8,8 @@ export const LOGOUT ='LOGOUT';
 
 /* tweet action types */
 export const TWEET = 'TWEET';
+export const REQUEST_LIKE_TWEET = 'REQUEST_LIKE_TWEET';
+export const REQUEST_UNLIKE_TWEET = 'REQUEST_UNLIKE_TWEET';
 export const LIKE_TWEET = 'LIKE_TWEET';
 export const UPLOAD_TWEETS = 'UPLOAD_TWEETS';
 
@@ -17,3 +19,5 @@ export const UPLOAD_TWEETS = 'UPLOAD_TWEETS';
 
 
 /* notification action types */
+export const LIKE_TWEET_NOTIFICATION = 'LIKE_TWEET_NOTIFICATION';
+export const UPLOAD_NOTIFICATIONS = 'UPLOAD_NOTIFICATIONS';

@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css'
-
-import Tweet from "./Tweet";
-import TweetObject from "../tweetObjects/TweetObject";
-import TweetListObject from "../tweetObjects/TweetListObject";
-
-import PropTypes from "prop-types";
 import store from "../redux/store";
 import {uploadTweetsAction, tweetAction} from "../redux/actions/tweetActions";
 import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import Tweet from "./Tweet";
+import TweetObject from "../tweetObjects/TweetObject";
+import TweetListObject from "../tweetObjects/TweetListObject";
 
 
 function TweetFeedHook(props) {
@@ -22,17 +18,16 @@ function TweetFeedHook(props) {
     },[tweetContent]);
 
     useEffect(() => {
+        /* upload tweets to redux store */
         let tweetList = JSON.parse(localStorage.getItem("tweetList"));
         store.dispatch(uploadTweetsAction(tweetList));
     }, []);
 
-    const showTweetsFeed = () => {
-        const jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
-        const tweetList = TweetListObject.fromJson(jsonTweetList);
-
+    const renderTweetsFeed = () => {
+        /* load tweets from redux store */
         return (
             <>
-                {tweetList.tweets.map(item => {
+                {props.tweetList.reverse().map(item => {
                     return <Tweet tweetData={item} key={item.tweetId}/>
                 })}
             </>
@@ -72,8 +67,8 @@ function TweetFeedHook(props) {
                 <div id="user-tweet">
                     <div className="user-tweet-tweet-raw">
                         <div>
-                            {/*<img className="user-tweet-img" alt="" src={this.props.profile.backgroundImgSrc}/>*/}
                             <img className="user-tweet-img" alt="" src={require('../../resources/shmul.webp')}/>
+                            {/*<img className="user-tweet-img" alt={props.currentUser.username} src={require(props.currentUser.profileImgSrc)}/>*/}
                         </div>
 
                         <div>
@@ -92,7 +87,7 @@ function TweetFeedHook(props) {
                 </div>
 
                 <div id="tweets">
-                    {showTweetsFeed()}
+                    {renderTweetsFeed()}
                 </div>
 
             </div>
@@ -102,7 +97,8 @@ function TweetFeedHook(props) {
 
 const mapStateToProps = (store) => {
     return {
-        tweetList: store.tweetList.tweetList
+        tweetList: store.tweets,
+        currentUser: store.users.loggedInUser
     };
 };
 

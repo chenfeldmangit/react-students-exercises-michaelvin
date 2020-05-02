@@ -106,12 +106,22 @@ export default class TweeterConfig {
         if (usersList == null) {
             localStorage.setItem("usersList", JSON.stringify([
                 {
-                    username: "Adi",
+                    username: "Michael",
                     password: "pass",
+                    id: "@NextGuildHead",
+                    bio: "some long bio",
+                    location: "Tel-Aviv",
+                    backgroundImgSrc: "../../resources/picture.jpg",
+                    profileImgSrc: "https://pbs.twimg.com/profile_images/822547732376207360/5g0FC8XX_400x400.jpg"
                 },
                 {
-                    username: "Michael",
+                    username: "shmulikknoll",
                     password: "123456",
+                    id: "@GuildHead",
+                    bio: "some long and old bio",
+                    location: "Tel-Aviv",
+                    backgroundImgSrc: "../../resources/picture.jpg",
+                    profileImgSrc: "../../resources/shmul.webp"
                 }
             ]));
         }

@@ -1,6 +1,4 @@
 import React from 'react';
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css'
 
 import store from '../redux/store';
 import {connect} from 'react-redux';
@@ -44,6 +42,7 @@ class ConnectionPage extends React.Component {
         return (
             <div id="connection-page">
                 <div id="connection-page-left">
+                    <img src={require("../../resources/twitter2.svg")} alt="twitter" className="att"/>
                 </div>
 
                 <div id="connection-page-right">
@@ -66,7 +65,7 @@ class ConnectionPage extends React.Component {
 
 const mapStateToProps = (store) => {
     return {
-        usersList: store.usersList.usersList
+        usersList: store.users.usersList
     };
 };
 

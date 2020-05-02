@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css';
-
 import FormInput from "../center-container/FormInput";
 import PropTypes from "prop-types";
 import store from "../redux/store";
-import {logInAction1, logInAction2} from "../redux/actions/connectionActions";
+import {logInAction1} from "../redux/actions/connectionActions";
+// import {logInAction2} from "../redux/actions/connectionActions";
 
 
 const LogIn = (props) => {
@@ -19,7 +17,7 @@ const LogIn = (props) => {
         /* option 1 */
         props.usersList.forEach(item => {
             if (item.username === user.username && item.password === user.password) {
-                store.dispatch(logInAction1({user}));
+                store.dispatch(logInAction1({...item}));
                 props.logInToTwitter();
             }
         });
@@ -65,7 +63,7 @@ const LogIn = (props) => {
 
 const mapStateToProps = (store) => {
     return {
-        usersList: [...store.usersList.usersList]
+        usersList: [...store.users.usersList]
     };
 };
 

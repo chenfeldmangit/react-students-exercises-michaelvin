@@ -1,6 +1,4 @@
 import React from 'react';
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css'
 
 import store from "../redux/store";
 import {connect} from "react-redux";
@@ -26,7 +24,8 @@ class TweetFeed extends React.Component {
         store.dispatch(uploadTweetsAction(tweetList));
     };
 
-    showTweetsFeed = () => {
+    renderTweetsFeed = () => {
+        /* load tweets from local storage */
         const jsonTweetList = JSON.parse(localStorage.getItem("tweetList"));
         const tweetList = TweetListObject.fromJson(jsonTweetList);
 
@@ -90,7 +89,7 @@ class TweetFeed extends React.Component {
                 </div>
 
                 <div id="tweets">
-                    {this.showTweetsFeed()}
+                    {this.renderTweetsFeed()}
                 </div>
 
             </div>

@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import store from '../redux/store';
 
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css';
-
 import FormInput from "../center-container/FormInput";
 import {signUpAction} from "../redux/actions/connectionActions";
 import PropTypes from "prop-types";

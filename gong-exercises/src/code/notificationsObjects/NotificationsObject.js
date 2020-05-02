@@ -1,7 +1,9 @@
+import NotificationUserObject from './NotificationsUserObject';
+
 
 export default class NotificationsObject {
     constructor(notificationId, timestamp, notificationType, users, notificationContent) {
-        this.notificationId = notificationId;
+        this.notificationId = notificationId === "" ? createNextNotificationId() : notificationId;
         this.timestamp = timestamp;
         this.notificationType = notificationType;
         this.users = users;
@@ -15,13 +17,8 @@ export default class NotificationsObject {
     }
 }
 
-class NotificationUserObject {
-    constructor(name, profileImg) {
-        this.name = name;
-        this.profileImg = profileImg;
-    }
-
-    static fromJson(json) {
-        return new NotificationUserObject(json.name, json.profileImg);
-    }
+function createNextNotificationId() {
+    let nextNotificationId = parseInt(localStorage.getItem("idEnumerator"), 10) + 1;
+    localStorage.setItem("idEnumerator", nextNotificationId.toString());
+    return "#notification-" + nextNotificationId;
 }

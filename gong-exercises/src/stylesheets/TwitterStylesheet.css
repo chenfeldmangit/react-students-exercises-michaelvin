@@ -33,6 +33,7 @@
     position: relative;
     border: solid #F5F8FA;
     flex-direction: column;
+    border-bottom: none;
 }
 
 #profile-page {
@@ -41,6 +42,8 @@
 
 #notification-feed {
     flex-direction: column;
+    border: solid #F5F8FA;
+    border-bottom: none;
 }
 
 #right-container {
@@ -53,7 +56,7 @@
 
 #connection-page-left {
     width: 50%;
-    background-color: #1DA1F3;
+    background-color: #71C9F8;
 }
 
 #connection-page-right {
@@ -117,7 +120,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 15em;
+    width: 17em;
     margin: 1em 1em 1em 3em;
 }
 
@@ -236,7 +239,7 @@
 }
 
 /*.tweet-action-bar-button*/.liked {
-    background: #9af0f3;
+    background: #71C9F8;
     border-radius: 60%;
 }
 
@@ -469,7 +472,7 @@
 #notification-feed-header-sub-up {
     display: flex;
     justify-content: space-between;
-    margin: 1em 0 1em 0;
+    margin: 1em 0.5em 1em 0.5em;
 }
 
 #notification-feed-header-text {
@@ -491,8 +494,23 @@
     text-align: center;
 }
 
+.notification {
+    margin: 1em 0 0 0;
+    border: solid white;
+    border-bottom-color: #F5F8FA;
+}
+
 .notification-type-img {
     width: 40px;
+}
+
+.notification-who-img {
+    border-radius: 5em;
+    margin-left: 0.5em;
+}
+
+.notification-content {
+    margin: 1em 1em 1em 5em;
 }
 
 /* common */
@@ -531,4 +549,10 @@
 
 #left-menu-profile-img, #profile-img, #edit-profile-profile-img {
     border-radius: 20em;
+}
+
+.att {
+    fill: white;
+    position: relative;
+    left: 30%;
 }

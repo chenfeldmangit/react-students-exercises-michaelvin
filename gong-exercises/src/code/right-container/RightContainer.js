@@ -1,6 +1,4 @@
 import React from 'react';
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css'
 import PropTypes from "prop-types";
 
 

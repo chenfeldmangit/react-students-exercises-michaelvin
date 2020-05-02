@@ -51,9 +51,7 @@ class MyTwitterApp extends React.Component {
         return (
             <>
                 {!this.state.someOneLoggedIn ?
-                    <>
-                        <ConnectionPage logInToTwitter={this.logInToTwitter}/>
-                    </>
+                    <> <ConnectionPage logInToTwitter={this.logInToTwitter}/> </>
                 :
                     <>
                         <LeftContainer profile={userProfile} displayProfilePageFunction={this.displayProfilePage} displayTweetFeedFunction={this.displayTweetFeed} displayNotificationsFunction={this.displayNotifications}/>

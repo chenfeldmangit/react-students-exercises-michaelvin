@@ -3,6 +3,9 @@ import '../../App.css';
 import '../../stylesheets/TwitterStylesheet.css'
 import PropTypes from "prop-types";
 import NotificationsObject from "../notificationsObjects/NotificationsObject";
+import TweetListObject from "../tweetObjects/TweetListObject";
+import store from "../redux/store";
+import {requestLikeTweetAction} from "../redux/actions/tweetActions";
 
 
 export default function Notification(props) {
@@ -14,7 +17,7 @@ export default function Notification(props) {
     };
 
     const messageByType = (type) => {
-      return type === "like" ? "liked your Tweet" : "followed you";
+      return type === "like" ? " liked your Tweet" : " followed you";
     };
 
     return (
@@ -26,7 +29,7 @@ export default function Notification(props) {
                         <img className="notification-who-img" src={require('../../resources/shmul.webp')} alt={props.notificationData.users.profileImg}/>
                     </div>
                     <div>
-                        <strong><label className="notification-who-name">{props.notificationData.users.name}</label></strong>
+                        <strong><label className="notification-who-name">{props.notificationData.users.username}</label></strong>
                         <label className="tweet-who-id">{messageByType(props.notificationData.notificationType)}</label>
                     </div>
                 </div>

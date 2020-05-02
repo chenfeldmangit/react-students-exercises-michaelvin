@@ -1,11 +1,9 @@
-
 import {SIGN_UP, LOGIN, UPLOAD_USERS, LOGOUT} from '../actionTypes';
 
 
 let connectionReducer = function(state = [], action) {
     switch (action.type) {
         case SIGN_UP:
-            // return [...state, [action.user]];
             return {...state, usersList:[...state.usersList, {...action.user}]};
         case LOGIN:
             return {...state, loggedInUser:{...action.user}};

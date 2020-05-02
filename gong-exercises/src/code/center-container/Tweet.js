@@ -1,10 +1,7 @@
 import React from 'react';
-import '../../App.css';
-import '../../stylesheets/TwitterStylesheet.css'
 import PropTypes from "prop-types";
-
 import TweetActionBar from "./TweetActionBar";
-import TweetObject from "../tweetObjects/TweetObject";
+// import TweetObject from "../tweetObjects/TweetObject";
 
 import shmul from "../../resources/shmul.webp"
 
@@ -12,8 +9,9 @@ import shmul from "../../resources/shmul.webp"
 class Tweet extends React.Component {
 
     convertTimestampToTime = (tweetTimestamp) => {
-        let dateObj = new Date(tweetTimestamp * 1000);
-        return dateObj.toUTCString();
+        let dateObj = new Date(parseFloat(tweetTimestamp) * 1000);
+        return dateObj.toLocaleDateString("en-GB") + " " + dateObj.toLocaleTimeString("en-GB");
+        // return dateObj.toUTCString();
     };
 
     render() {
@@ -47,7 +45,8 @@ class Tweet extends React.Component {
 }
 
 Tweet.propTypes = {
-    tweetData: PropTypes.instanceOf(TweetObject).isRequired,
+    tweetData: PropTypes.instanceOf(Object).isRequired,
+    // tweetData: PropTypes.instanceOf(TweetObject).isRequired,
 };
 
 // TweetObject.propTypes = {

@@ -1,4 +1,3 @@
-
 import {TWEET, LIKE_TWEET, UPLOAD_TWEETS} from '../actionTypes';
 
 
