@@ -3,9 +3,6 @@ import '../../App.css';
 import '../../stylesheets/TwitterStylesheet.css'
 import PropTypes from "prop-types";
 import NotificationsObject from "../notificationsObjects/NotificationsObject";
-import TweetListObject from "../tweetObjects/TweetListObject";
-import store from "../redux/store";
-import {requestLikeTweetAction} from "../redux/actions/tweetActions";
 
 
 export default function Notification(props) {

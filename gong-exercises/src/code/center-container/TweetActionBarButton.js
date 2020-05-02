@@ -1,6 +1,5 @@
 import React from 'react';
 import store from "../redux/store";
-import {likeTweetsAction} from "../redux/actions/tweetActions";
 import {requestLikeTweetAction, requestUnLikeTweetAction} from "../redux/actions/tweetActions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
